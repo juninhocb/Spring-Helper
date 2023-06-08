@@ -30,6 +30,8 @@ public class EmailResource {
     @GetMapping(value = "/find/{emailId}")
     public ResponseEntity<Email> findById(@PathVariable Long emailId){
         Email email = emailService.findById(emailId);
+        if (email == null)
+            return ResponseEntity.notFound().build();
         return ResponseEntity.ok().body(email);
     }
 

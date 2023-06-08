@@ -1,6 +1,7 @@
 package com.carlosjr.email.email;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.io.File;
@@ -15,7 +16,6 @@ public class Email implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long ownerId;
-    private String emailSender;
     private String emailRecipient;
     private String subject;
     @Column(columnDefinition = "TEXT")
@@ -24,4 +24,5 @@ public class Email implements Serializable {
     @Column(name = "timestamp")
     private LocalDateTime timeStamp;
     private EmailStatus status;
+    private String errorCause;
 }

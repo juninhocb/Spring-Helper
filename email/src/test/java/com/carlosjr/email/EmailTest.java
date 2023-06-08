@@ -20,7 +20,6 @@ public class EmailTest {
     public void shouldStatusCodeBeCreatedForCorrectlyRequests(){
         EmailDTO emailDTO = new EmailDTO(
                 3L,
-                "io.carlosjr@hotmail.com",
                 "juninhocb@hotmail.com",
                 "Testando email service",
                 "\"Boa tarde \nEste é o conteúdo do email. \natt\"",
@@ -34,22 +33,30 @@ public class EmailTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        
+        ResponseEntity<String> response2 = restTemplate
+                .getForEntity(response.getHeaders().getLocation(), String.class);
 
+        assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void shouldResponseWithNotFoundWhenAResourceIsNotFound(){
+        ResponseEntity<String> response2 = restTemplate
+                .getForEntity("/email/find/84", String.class);
+
+        assertThat(response2.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
     @Test
     public void shouldInvalidateRequestInDifferentScenarios(){
         EmailDTO emailDTO = new EmailDTO(
                 3L,
                 null,
-                "juninhocb@hotmail.com",
                 "Testando email service",
                 "\"Boa tarde \nEste é o conteúdo do email. \natt\"",
                 null);
 
         EmailDTO emailDTO2 = new EmailDTO(
                 3L,
-                "joao@hotmail.com",
                 "juninhocb@hotmail.com",
                 "",
                 "",
@@ -57,7 +64,6 @@ public class EmailTest {
 
         EmailDTO emailDTO3 = new EmailDTO(
                 3L,
-                "testando",
                 "teste",
                 "Testando email service",
                 "\"Boa tarde \nEste é o conteúdo do email. \natt\"",
@@ -65,7 +71,6 @@ public class EmailTest {
 
         EmailDTO emailDTO4 = new EmailDTO(
                 -3L,
-                "testando@hotmail.com",
                 "teste@hotmail.com",
                 "Testando email service",
                 "\"Boa tarde \nEste é o conteúdo do email. \natt\"",
@@ -101,10 +106,6 @@ public class EmailTest {
         assertThat(response4.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
-    @Test
-    public void shouldCreateAndReturnTheCorrectlyResourceOfEmail(){
-
-    }
 
 
 }

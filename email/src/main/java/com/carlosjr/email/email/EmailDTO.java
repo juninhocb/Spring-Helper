@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Positive;
 
 public record EmailDTO(
         @NotNull @Positive Long ownerId,
-        @NotNull @Email String emailSender,
         @NotNull @Email String emailRecipient,
         @NotNull @NotBlank String subject,
         @NotNull @NotBlank String textContent,
