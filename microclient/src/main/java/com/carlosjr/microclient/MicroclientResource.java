@@ -61,16 +61,12 @@ public class MicroclientResource {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (response.isSuccessful()){
-                    System.out.println("Hello mr/mrs " + response.body());
-                } else {
-                    System.out.println("Problem on request: " + response.code());
-                }
+                System.out.println("Ok" + response.body());
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                System.out.println("An exception was erased on request: " + t.getMessage());
+            public void onFailure(Call<String> call, Throwable throwable) {
+                System.out.println("An exception was raised " + throwable.getMessage());
             }
         });
         return ResponseEntity.ok().body("ok");

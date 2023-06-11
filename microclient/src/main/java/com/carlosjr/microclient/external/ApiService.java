@@ -1,6 +1,7 @@
 package com.carlosjr.microclient.external;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.*;
 
 public interface ApiService {
@@ -14,10 +15,10 @@ public interface ApiService {
             @Field("password") String password
     );
 
-    @GET("devices/test/{name}")
+    @GET("greetings/bypath/{name}")
     Call<String> getGreeting(@Path("name") String nameToGreet);
 
-    @GET("devices/test")
+    @GET("greetings/byquery")
     Call<String> getGreetingQuery(@Query("name") String nameToQuery);
 
 }
