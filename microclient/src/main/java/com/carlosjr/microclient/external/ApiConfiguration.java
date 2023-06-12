@@ -1,6 +1,5 @@
 package com.carlosjr.microclient.external;
 
-import com.carlosjr.microclient.MicroclientApiProperties;
 import com.carlosjr.microclient.MicroclientBaseProperties;
 import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -31,7 +29,6 @@ public class ApiConfiguration {
                 .baseUrl(microclientBaseProperties.getBaseUrl())
                 .client(getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         return retrofit.create(ApiService.class);

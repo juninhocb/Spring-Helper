@@ -1,16 +1,13 @@
-package com.carlos.serversecurity;
+package com.carlojr.simpleoauth2;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping(value = "/greetings")
-public class ServerTestResource {
-
+public class ServerPublicResource {
     @GetMapping("/bypath/{name}")
-    public ResponseEntity<String> greetingByPath(@PathVariable String name){
-        System.out.printf("The name is %s", name +"\n");
-        return ResponseEntity.ok().body("Hello, " + name + "✌️");
+    public ResponseEntity<String> greetingByPath(@PathVariable String name) {
+        return ResponseEntity.ok().body("Hello " + name);
     }
 
     @GetMapping("/byquery")

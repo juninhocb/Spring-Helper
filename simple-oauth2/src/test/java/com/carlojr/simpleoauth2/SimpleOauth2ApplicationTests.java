@@ -1,10 +1,10 @@
-package com.carlos.serversecurity;
+package com.carlojr.simpleoauth2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServerSecurityApplicationTests {
+class SimpleOauth2ApplicationTests {
 
 	@Test
 	void contextLoads() {

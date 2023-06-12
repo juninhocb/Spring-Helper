@@ -27,13 +27,6 @@
 			<artifactId>retrofit</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars -->
-		<dependency>
-			<groupId>com.squareup.retrofit2</groupId>
-			<artifactId>converter-scalars</artifactId>
-			<version>2.9.0</version>
-		</dependency>
-
 
 		<dependency>
 			<groupId>com.squareup.retrofit2</groupId>

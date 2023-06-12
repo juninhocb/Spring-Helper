@@ -1,7 +1,8 @@
 package com.carlosjr.microclient.external;
 
+import okhttp3.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.*;
 
 public interface ApiService {
@@ -16,9 +17,9 @@ public interface ApiService {
     );
 
     @GET("greetings/bypath/{name}")
-    Call<String> getGreeting(@Path("name") String nameToGreet);
+    Call<ResponseBody> getGreeting(@Path("name") String name);
 
     @GET("greetings/byquery")
-    Call<String> getGreetingQuery(@Query("name") String nameToQuery);
+    Call<ResponseBody> getGreetingQuery(@Query("name") String nameToQuery);
 
 }

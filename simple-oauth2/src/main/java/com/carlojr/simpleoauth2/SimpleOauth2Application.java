@@ -1,13 +1,13 @@
-package com.carlos.serversecurity;
+package com.carlojr.simpleoauth2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ServerSecurityApplication {
+public class SimpleOauth2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServerSecurityApplication.class, args);
+		SpringApplication.run(SimpleOauth2Application.class, args);
 	}
 
 }
