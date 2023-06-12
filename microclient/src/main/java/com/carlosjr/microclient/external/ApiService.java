@@ -1,7 +1,6 @@
 package com.carlosjr.microclient.external;
 
 import okhttp3.ResponseBody;
-import org.springframework.web.bind.annotation.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 

@@ -3,10 +3,7 @@ package com.carlosjr.microclient;
 import com.carlosjr.microclient.external.ApiService;
 import com.carlosjr.microclient.external.TokenDTO;
 import okhttp3.Credentials;
-import okhttp3.MediaType;
 import okhttp3.ResponseBody;
-import okio.Utf8;
-import org.apache.el.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +12,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.io.IOException;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/connect")
@@ -62,28 +58,10 @@ public class MicroclientResource {
     }
 
     @GetMapping(value = "/test/{name}")
-    public ResponseEntity<String> printHello(@PathVariable String name){
+    public ResponseEntity<String> retrieveTheHelloMessage(@PathVariable String name) throws IOException {
         Call<ResponseBody> call = service.getGreeting(name);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()){
-                    try {
-                        System.out.println("Ok! " + response.body().string());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }else {
-                    System.out.println("cant read: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println("An exception was raised " + t.getMessage());
-            }
-        });
-        return ResponseEntity.ok("Ok");
+        Response<ResponseBody> callResponse = call.execute();
+        return ResponseEntity.ok(callResponse.body().string());
     }
 
     @GetMapping(value = "/test")
@@ -108,6 +86,6 @@ public class MicroclientResource {
                 System.out.println("An exception was occurred with message: "  + t.getMessage());
             }
         });
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok("OK with async");
     }
 }

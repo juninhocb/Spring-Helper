@@ -14,8 +14,7 @@ public class EnhanceUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         String encryptedPassword = passwordEncoder.encode("passwordBody");
-        System.out.println(encryptedPassword);
-        User user = new User("tester123", encryptedPassword, username); //database 'username'
+        User user = new User("tester123", encryptedPassword, username);
         return new EnhanceUser(user);
     }
 

@@ -9,7 +9,6 @@ public class ServerPublicResource {
     public ResponseEntity<String> greetingByPath(@PathVariable String name) {
         return ResponseEntity.ok().body("Hello " + name);
     }
-
     @GetMapping("/byquery")
     public ResponseEntity<String> greetingByQuery(@RequestParam(value="name", defaultValue = "unknown", required = false) String name){
         return ResponseEntity.ok().body("Hello, " + name + "✌️");
