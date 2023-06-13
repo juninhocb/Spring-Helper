@@ -1,4 +1,4 @@
-package com.carlosjr.googlesignin.user;
+package com.carlosjr.simpleisgnin.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

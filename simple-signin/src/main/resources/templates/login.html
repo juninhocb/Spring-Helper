@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Carlos jr</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="col container">
+        <form th:action="@{/login}" method="post">
+            <div class="mb-2 col-3">
+                <label for="input-email" class="form-label"><b>Email address</b></label>
+                <input type="email" class="form-control" name="username" id="input-email">
+            </div>
+            <div class="mb-2 col-3">
+                <label for="input-password" class="form-label"> <b>Password</b></label>
+                <input type="password" class="form-control" name="password" id="input-password">
+            </div>
+            <button type="submit" class="btn btn-primary text-center">Submit</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
-package com.carlosjr.googlesignin.config;
+package com.carlosjr.simpleisgnin.config;
 
-import com.carlosjr.googlesignin.user.MyUserDetailsService;
+import com.carlosjr.simpleisgnin.user.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.dao.*;
