@@ -1,5 +1,7 @@
 package com.carlosjr.googlesignin.config;
 
+import com.carlosjr.googlesignin.oauth.CustomAuthenticationSuccessHandler;
+import com.carlosjr.googlesignin.oauth.CustomOAuth2UserService;
 import com.carlosjr.googlesignin.user.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -16,6 +18,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     MyUserDetailsService myUserDetailsService;
+
+    @Autowired
+    CustomOAuth2UserService customOAuth2UserService;
+
+    @Autowired
+    CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -43,14 +51,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/users/create").permitAll()
+                .antMatchers("/login/**", "/oauth/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    //.loginPage("/login") disable/enable spring login page
+                    .loginPage("/login") //disable/enable spring login page
                     .defaultSuccessUrl("/index")
                     .failureUrl("/fail").permitAll()
-                .and().logout().permitAll()
-                .and().csrf().disable();
+                .and()
+                .oauth2Login().loginPage("/login").userInfoEndpoint().userService(customOAuth2UserService)
+                .and().successHandler(customAuthenticationSuccessHandler);
     }
 }

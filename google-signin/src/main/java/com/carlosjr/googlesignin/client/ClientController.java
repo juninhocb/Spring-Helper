@@ -23,15 +23,9 @@ public class ClientController {
         return "index";
     }
 
-    @PostMapping("/login_success_handler")
-    public String loginSuccessHandler(){
-        System.out.println("Was logged in");
+    @GetMapping(value = "/index")
+    public String index(){
+        System.out.println("redirecting to index...");
         return "index";
     }
-    @PostMapping("/login_failure_handler")
-    public String loginFailureHandler(){
-        System.out.println("Not successfully logged in");
-        return "login";
-    }
-
 }

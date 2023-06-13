@@ -1,5 +1,7 @@
 package com.carlosjr.googlesignin.user;
 
+import com.carlosjr.googlesignin.user.enums.Provider;
+
 import javax.persistence.*;
 import java.util.UUID;
 @Entity
@@ -12,6 +14,9 @@ public class User {
     private String username;
     private String password;
     private String name;
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
     public User(String username, String password, String name) {
         this.username = username;
         this.password = password;
@@ -50,5 +55,24 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", provider=" + provider +
+                '}';
     }
 }
