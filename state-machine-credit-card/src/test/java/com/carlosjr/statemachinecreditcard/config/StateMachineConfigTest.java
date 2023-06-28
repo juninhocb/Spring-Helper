@@ -12,10 +12,8 @@ import java.util.UUID;
 
 @SpringBootTest
 class StateMachineConfigTest {
-
     @Autowired
     StateMachineFactory<PaymentState, PaymentEvent> factory;
-
     @Test
     void testNewStateMachine(){
         StateMachine<PaymentState, PaymentEvent> sm = factory.getStateMachine(UUID.randomUUID());

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
     public static final String PAYMENT_ID_HEADER = "payment_id";
-    private PaymentStateChangeListener paymentStateChangeListener;
+    private final PaymentStateChangeInterceptor paymentStateChangeInterceptor;
     private final PaymentRepository paymentRepository;
     private final StateMachineFactory stateMachineFactory;
 
@@ -30,21 +30,21 @@ public class PaymentServiceImpl implements PaymentService {
     public StateMachine<PaymentState, PaymentEvent> preAuth(Long paymentId) {
         StateMachine<PaymentState, PaymentEvent> sm = build(paymentId);
         sendEventToStateMachine(paymentId, sm, PaymentEvent.PRE_AUTHORIZE);
-        return null;
+        return sm;
     }
 
     @Override
     public StateMachine<PaymentState, PaymentEvent> authorizePayment(Long paymentId) {
         StateMachine<PaymentState, PaymentEvent> sm = build(paymentId);
-        sendEventToStateMachine(paymentId, sm, PaymentEvent.AUTH_APPROVED);
-        return null;
+        sendEventToStateMachine(paymentId, sm, PaymentEvent.AUTHORIZE);
+        return sm;
     }
 
     @Override
     public StateMachine<PaymentState, PaymentEvent> declineAuth(Long paymentId) {
         StateMachine<PaymentState, PaymentEvent> sm = build(paymentId);
         sendEventToStateMachine(paymentId, sm, PaymentEvent.AUTH_DECLINED);
-        return null;
+        return sm;
     }
 
     private void sendEventToStateMachine(Long paymentId, StateMachine<PaymentState, PaymentEvent> sm, PaymentEvent event){
@@ -56,18 +56,20 @@ public class PaymentServiceImpl implements PaymentService {
 
     private StateMachine<PaymentState, PaymentEvent> build(Long paymentId){
         Payment payment = paymentRepository.findById(paymentId).get();
+
         StateMachine<PaymentState, PaymentEvent> sm = stateMachineFactory.getStateMachine(Long.toString(payment.getId()));
 
         sm.stop();
+
         sm.getStateMachineAccessor()
-                .doWithAllRegions(sma-> {
-                    sma.addStateMachineInterceptor(paymentStateChangeListener);
+                .doWithAllRegions(sma -> {
+                    sma.addStateMachineInterceptor(paymentStateChangeInterceptor);
                     sma.resetStateMachine(new DefaultStateMachineContext<>(payment.getState(), null, null, null));
                 });
 
         sm.start();
-        return sm;
 
+        return sm;
     }
 
 }
