@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Profile;
 @Profile("google")
 @Configuration
 public class GoogleConfig {
-
+    static {
+        System.out.println("Hello, is there anybody in there?");
+    }
     @Bean
     public RouteLocator googleConfigRout(RouteLocatorBuilder builder){
          return builder.routes()
