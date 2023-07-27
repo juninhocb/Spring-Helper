@@ -19,9 +19,9 @@ public class MockInit implements CommandLineRunner {
 
         if (personRepository.count() == 0 ){
 
-            Person john = Person.builder().name("John Green").age(28).build();
-            Person richard = Person.builder().name("Richard Black").age(26).build();
-            Person bob = Person.builder().name("Bob Blue").age(30).build();
+            Person john = Person.builder().name("John Green").age(28).address("Blumenau-SC").build();
+            Person richard = Person.builder().name("Richard Black").age(26).address("Ponta Grossa-PR").build();
+            Person bob = Person.builder().name("Bob Blue").age(30).address("Joinville-SC").build();
 
             personRepository.saveAll(Arrays.asList(john, richard, bob));
 
