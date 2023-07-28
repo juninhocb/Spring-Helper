@@ -40,6 +40,6 @@ public class PasswordEncoderTest {
         PasswordEncoder bcrypt = new BCryptPasswordEncoder();
         System.out.println(bcrypt.encode(PASSWORD));
         System.out.println(bcrypt.encode(PASSWORD)); //different
-        
+
     }
 }

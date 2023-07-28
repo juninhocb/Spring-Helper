@@ -19,4 +19,8 @@ public class StubResources {
         return "Success for port";
     }
 
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteResource(){return "Success for delete";}
+
 }
