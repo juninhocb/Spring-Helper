@@ -16,6 +16,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Person {
 
+    /**
+     * AUTO - JPA Provider (Such as hibernate) will generate the primary key value
+     * IDENTITY - Database provider will do this
+     * SEQUENCE - JPA uses database sequence to provide the primary key
+     * TABLE - JPA uses a special table for storing keys (less efficient)
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
