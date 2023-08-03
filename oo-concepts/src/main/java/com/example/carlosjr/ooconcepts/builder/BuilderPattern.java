@@ -19,9 +19,9 @@ public class BuilderPattern implements CommandLineRunner {
                 .name("Petterson Black")
                 .id(2L).build();
 
-        System.out.println("Person old: " + personOld.getName()  + " \n" + personOld.getId());
+        //System.out.println("Person old: " + personOld.getName()  + " \n" + personOld.getId());
 
-        System.out.println("Person builder" + personBuilder);
+        //System.out.println("Person builder" + personBuilder);
 
     }
 }

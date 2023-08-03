@@ -10,8 +10,8 @@ public class FactoryPattern implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         EmailServiceFactory factory = new EmailServiceFactory("BRA");
-        System.out.println("\n \n");
-        factory.getEmailService().sendEmail("This message!");
+        //System.out.println("\n \n");
+        //factory.getEmailService().sendEmail("This message!");
 
 
     }

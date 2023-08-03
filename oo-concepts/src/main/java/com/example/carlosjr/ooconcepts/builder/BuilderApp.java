@@ -17,14 +17,14 @@ public class BuilderApp implements CommandLineRunner {
 
         ResponseDtoOld response =  webClientGetResponse("Parameter11");
 
-        System.out.println("normal");
-        System.out.println(response.getIdentity());
-        System.out.println(response.getMessage());
+        //System.out.println("normal");
+        //System.out.println(response.getIdentity());
+        //System.out.println(response.getMessage());
 
-        System.out.println("from builder");
+        //System.out.println("from builder");
         ResponseDto responseBuilder = webClientGetResponseBuilder("Parameter1");
-        System.out.println(responseBuilder.getIdentity());
-        System.out.println(responseBuilder.getMessage());
+        //System.out.println(responseBuilder.getIdentity());
+        //System.out.println(responseBuilder.getMessage());
     }
 
     private ResponseDto webClientGetResponseBuilder(String param) {
