@@ -19,7 +19,7 @@ public class LifeCycleInspect implements CommandLineRunner {
         boolean isSingleton = context
                 .getBeanFactory().isSingleton("lifeCycleBean");
 
-        System.out.println("Is singleton? " + isSingleton);
+        //System.out.println("Is singleton? " + isSingleton);
 
 
     }
