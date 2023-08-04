@@ -6,16 +6,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class InvoiceHandle implements CommandLineRunner {
 
-    private final PaymentProrcessor paymentProrcessor;
+    private final PaymentProcessor paymentProcessor;
 
-    public InvoiceHandle(PaymentProrcessor paymentProrcessor) {
-        this.paymentProrcessor = paymentProrcessor;
+    public InvoiceHandle(PaymentProcessor paymentProcessor) {
+        this.paymentProcessor = paymentProcessor;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        paymentProrcessor.process(4.00);
+        paymentProcessor.process(4.00);
 
 
     }

@@ -3,7 +3,7 @@ package com.example.carlosjr.ooconcepts.di;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PaymentProrcessor {
+public class PaymentProcessor {
 
     public void process(Double amount) throws InterruptedException {
         System.out.println("Processando pagamento...." + amount);
