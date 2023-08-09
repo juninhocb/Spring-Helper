@@ -4,16 +4,14 @@ import com.example.carlosjr.springwebfluxr2dbc.model.Person;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
-
-@WebFluxTest(PersonController.class)
 @SpringBootTest
+@AutoConfigureWebTestClient
 class PersonControllerTest {
 
     @Autowired
@@ -36,14 +34,11 @@ class PersonControllerTest {
     void shouldGetAPersonById() {
 
         webTestClient.get()
-                .uri(BASE_URL)
-                .accept(MediaType.APPLICATION_JSON)
+                .uri(BASE_URL, 1)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Person.class)
-                .value(person -> {
-                    System.out.println(person.getName());
-                });
+                .expectHeader().valueEquals("Content-type", "application/json")
+                .expectBody(Person.class);
 
     }
 
@@ -52,15 +47,21 @@ class PersonControllerTest {
 
         webTestClient.get()
                 .uri(BASE_URL)
-                .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Person.class)
-                .value(person -> {
-                    System.out.println(person);
-                    assertThat(person).isNotNull();
-                });
+                .expectHeader().valueEquals("Content-type", "application/json")
+                .expectBody().jsonPath("$.size()").isEqualTo(3);
 
+    }
+
+    @Test
+    void shouldCreatePerson() {
+        webTestClient.post().uri(BASE_URL)
+                .body(Mono.just(getTestPerson()), Person.class)
+                .header("Content-type", "application/json")
+                .exchange()
+                .expectStatus().isCreated()
+                .expectHeader().location("/api/v1/person/4/id");
     }
 
     private Person getTestPerson(){
