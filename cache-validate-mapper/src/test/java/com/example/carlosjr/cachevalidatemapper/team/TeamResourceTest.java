@@ -1,5 +1,6 @@
 package com.example.carlosjr.cachevalidatemapper.team;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,6 +84,17 @@ class TeamResourceTest {
                     postForEntity(BASE_URL, getInvalidTeamDto(i) ,Void.class);
             assertThat(createResponse.getStatusCode()).isNotEqualTo(HttpStatus.CREATED);
         }
+    }
+
+    //just 4 my pruposes this test will be validated using sout in service class
+    //to better test it, mock is required
+    @Test
+    @RepeatedTest(5)
+    void cacheTest(){
+        ResponseEntity<List<TeamDto>> response = restTemplate
+                .exchange(BASE_URL, HttpMethod.GET, null, new ParameterizedTypeReference<List<TeamDto>>(){});
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody().size()).isEqualTo(3);
     }
 
     private TeamDto getTeamDto(){

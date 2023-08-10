@@ -2,6 +2,7 @@ package com.example.carlosjr.cachevalidatemapper.team;
 
 import com.example.carlosjr.cachevalidatemapper.exceptions.TeamNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,18 +13,24 @@ import java.util.Optional;
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
     private final TeamMapper teamMapper;
+    @Cacheable(cacheNames = "team-cache", key = "#id")
     @Override
     public TeamDto getTeamById(Integer id) {
+        System.out.println("Im here!");
         return teamMapper.entityToDto(handleFind(id));
     }
 
+    @Cacheable(cacheNames = "team-cache", key = "#name")
     @Override
     public TeamDto getTeamByName(String name) {
+        System.out.println("Im here!");
         return teamMapper.entityToDto(handleFind(name));
     }
 
+    @Cacheable(cacheNames = "team-cache")
     @Override
     public List<TeamDto> getAllTeams() {
+        System.out.println("Im here!");
         return teamRepository.findAll()
                 .stream()
                 .map(teamMapper::entityToDto)
