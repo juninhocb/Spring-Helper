@@ -1,0 +1,1 @@
+ALTER TABLE person ADD created_time TIMESTAMP;

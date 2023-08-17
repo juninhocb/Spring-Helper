@@ -1,0 +1,1 @@
+ALTER TABLE person ADD email VARCHAR(255) DEFAULT "no-email@example.com.br";

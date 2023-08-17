@@ -1,0 +1,1 @@
+ALTER TABLE person ADD schedule_time TIME DEFAULT '00:00:00';
