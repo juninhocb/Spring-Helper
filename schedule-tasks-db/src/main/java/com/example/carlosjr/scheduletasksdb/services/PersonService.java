@@ -10,6 +10,7 @@ public interface PersonService {
     PersonDto findById(Long id);
     PersonDto findByName(String name);
     Set<PersonDto> findAll(Pageable pageable);
+    Set<PersonDto> findAllNotPaging();
     Long create(PersonDto personDto);
     void update(Long id, PersonDto personDto);
     void updateSchedule(Long id, String time);

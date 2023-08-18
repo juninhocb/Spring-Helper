@@ -42,6 +42,15 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Set<PersonDto> findAllNotPaging() {
+        return personRepository
+                .findAll()
+                .stream()
+                .map(personMapper::entityToDto)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
     public Long create(PersonDto personDto) {
         Person persistedPerson = personRepository
                 .save(personMapper.dtoToEntity(personDto));
