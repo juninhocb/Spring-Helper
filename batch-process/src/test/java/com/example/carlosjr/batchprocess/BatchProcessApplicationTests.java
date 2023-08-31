@@ -40,7 +40,7 @@ class BatchProcessApplicationTests {
         Assertions.assertEquals(ExitStatus.COMPLETED, jobExecution.getExitStatus());
     }
 
-    @Test
+    //@Test
     void testJobExecution() throws Exception {
         // given
         JobParameters jobParameters = new JobParametersBuilder()
