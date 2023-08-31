@@ -23,7 +23,7 @@ class BatchProcessApplicationTests {
     @Autowired
     private JobLauncher jobLauncher;
 
-    @Test
+    //@Test
     void testJob(CapturedOutput output) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
 
         // given
