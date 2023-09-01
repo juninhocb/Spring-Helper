@@ -16,9 +16,7 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.support.JdbcTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -69,8 +67,6 @@ public class BillingJobConfig {
                 .beanMapped()
                 .build();
     }
-
-
 
     @Bean
     public Job job(JobRepository jobRepository, Step step1, Step step2){
