@@ -6,6 +6,7 @@ import com.example.carlosjr.batchprocess.tasks.BillingDataProcessor;
 import com.example.carlosjr.batchprocess.tasks.FilePreparationTasklet;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -20,6 +21,7 @@ import org.springframework.batch.item.file.FlatFileItemWriter;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -58,10 +60,11 @@ public class BillingJobConfig {
 
     //File
     @Bean
-    public FlatFileItemReader<BillingData> billingDataFlatFileItemReader() {
+    @StepScope
+    public FlatFileItemReader<BillingData> billingDataFlatFileItemReader(@Value("#{jobParameters['input.file']}") String inputFile) {
         return new FlatFileItemReaderBuilder<BillingData>()
                 .name("billingDataFileReader")
-                .resource(new FileSystemResource("staging/billing-2023-01.csv"))
+                .resource(new FileSystemResource(inputFile))
                 .delimited()
                 .names("dataYear", "dataMonth", "accountId", "phoneNumber", "dataUsage", "callDuration", "smsCount")
                 .targetType(BillingData.class)
@@ -69,7 +72,9 @@ public class BillingJobConfig {
     }
 
     @Bean
-    public FlatFileItemWriter<ReportingData> billingDataFileWriter() {
+    @StepScope
+    public FlatFileItemWriter<ReportingData> billingDataFileWriter(
+            @Value("#{jobParameters['output.file']}") String outputFile) {
         return new FlatFileItemWriterBuilder<ReportingData>()
                 .resource(new FileSystemResource("staging/billing-report-2023-01.csv"))
                 .name("billingDataFileWriter")
@@ -91,8 +96,12 @@ public class BillingJobConfig {
     }
 
     @Bean
-    public JdbcCursorItemReader<BillingData> billingDataJdbcCursorItemReader(){
-        String sql = "SELECT * from BILLING_DATA";
+    @StepScope
+    public JdbcCursorItemReader<BillingData> billingDataJdbcCursorItemReader(
+            @Value("#{jobParameters['data.year']}") Integer year,
+            @Value("#{jobParameters['data.month']}") Integer month
+    ){
+        String sql = String.format("select * from BILLING_DATA where DATA_YEAR = %d and DATA_MONTH = %d", year, month);
         JdbcCursorItemReader<BillingData> reader = new JdbcCursorItemReader<>();
         reader.setDataSource(this.dataSource);
         reader.setName("billingDataTableReader");
