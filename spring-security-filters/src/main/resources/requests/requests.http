@@ -1,0 +1,11 @@
+###
+GET http://localhost:8080/free
+
+###
+GET http://localhost:8080/auth
+Authorization: Bearer myBeaterToken
+
+
+###
+GET http://localhost:8080/api-content
+Authorization: Bearer myBeaterToken
