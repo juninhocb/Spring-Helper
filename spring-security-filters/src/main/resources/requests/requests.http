@@ -3,7 +3,7 @@ GET http://localhost:8080/free
 
 ###
 GET http://localhost:8080/auth
-Authorization: Bearer myBeaterToken
+Authorization: Bearer myBeaterTokenFake
 
 
 ###

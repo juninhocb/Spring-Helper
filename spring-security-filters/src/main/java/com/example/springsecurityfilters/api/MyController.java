@@ -1,6 +1,7 @@
 package com.example.springsecurityfilters.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
