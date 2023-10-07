@@ -8,7 +8,7 @@ Authorization: Bearer myBearerTokenFake
 
 ###
 GET http://localhost:8080/api-content
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZSIsImlzcyI6Ik15IEFwcGxpY2F0aW9uIiwiZXhwIjoxNjk2MTg5OTk5fQ.LReYImrfJvQQCG8fXJO2SN6obNLe_b0Ovp4oB6PHv5E
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZSIsImlzcyI6Ik15IEFwcGxpY2F0aW9uIiwiZXhwIjoxNjk2MjA0NzQzfQ.v8D0oRSL7NkL75sFG9lY4HHZ9LpYrij7yctvUf-qhz8
 
 ###
 POST http://localhost:8080/login
