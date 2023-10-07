@@ -1,0 +1,30 @@
+###
+POST http://localhost:8080/accounts
+Content-Type: application/json
+
+{
+  "id": 1,
+  "first_name":  "Jackson",
+  "second_name" : "Library"
+}
+
+
+### Another Account
+POST http://localhost:8080/accounts
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstName":  "Jackson",
+  "secondName" : "Library",
+  "company" : "Vmware"
+}
+
+###
+GET http://localhost:8080/accounts
+Accept: application/json
+
+###
+GET http://localhost:8080/accounts/1
+Accept: application/json
+
