@@ -1,0 +1,17 @@
+query{
+  customers{
+    id,
+    name,
+    profile {
+      id
+    }
+  }
+}
+
+query{
+  customerById(id:2){
+    name
+  }
+}
+
+http://localhost:8080/graphiql
