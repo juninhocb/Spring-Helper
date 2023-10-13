@@ -1,0 +1,11 @@
+### GET Person John
+GET http://localhost:8081/person/John%20Green
+Accept: application/json
+
+### GET Person Peter
+GET http://localhost:8081/person/Peter%20Black
+Accept: application/json
+
+### GET Person Not Exist
+GET http://localhost:8081/person/John%20Greeneee
+Accept: application/json
