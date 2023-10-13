@@ -1,0 +1,11 @@
+### Get an object
+GET http://localhost:8080/object/5
+Accept: application/json
+
+### Invalid response
+GET http://localhost:8080/object/-5
+Accept: application/json
+
+### Get string
+GET http://localhost:8080/object/str
+Accept: application/json
