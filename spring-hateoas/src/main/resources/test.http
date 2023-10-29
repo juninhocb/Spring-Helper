@@ -1,0 +1,28 @@
+### CREATE PETER BLACK
+POST http://localhost:8080/api/v1/person
+Content-Type: application/json
+
+{
+  "name" : "Peter black",
+  "age" : 25
+}
+
+### CREATE JOHN GREEN
+POST http://localhost:8080/api/v1/person
+Content-Type: application/json
+
+{
+  "name" : "John green",
+  "age" : 31
+}
+
+### GET ALL
+GET http://localhost:8080/api/v1/person
+Accept: application/json
+
+
+### GET BY ID
+GET http://localhost:8080/api/v1/person/d43b789a-1a63-43f7-89e9-3bbdb62ca56d
+Accept: application/json
+
+
